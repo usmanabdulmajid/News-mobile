@@ -3,6 +3,8 @@ abstract class AppException implements Exception {
   final String message;
 }
 
-class AuthException extends AppException {
-  AuthException(String message) : super(message);
+class NetworkException implements AppException {
+  @override
+  final String message;
+  const NetworkException({this.message = 'No internet connection'});
 }
