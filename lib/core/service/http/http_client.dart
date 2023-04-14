@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
@@ -8,7 +9,7 @@ class HttpClient implements HttpService {
   final Client client;
   HttpClient(this.client);
   @override
-  Future<Response> call({
+  Future<Map<String, dynamic>> call({
     required String url,
     required RequestMethod method,
     params,
@@ -26,7 +27,7 @@ class HttpClient implements HttpService {
       } else {
         response = await client.get(Uri.parse(url));
       }
-      return response;
+      return json.decode(response.body);
     } catch (e) {
       throw Exception(e);
     }
