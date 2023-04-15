@@ -5,9 +5,9 @@ import 'package:http/http.dart';
 import 'package:news_mobile/core/service/http/http_service.dart';
 import 'package:news_mobile/core/utils/enums.dart';
 
-class HttpClient implements HttpService {
-  final Client client;
-  HttpClient(this.client);
+class Httpee implements HttpService {
+  final Client client = Client();
+  Httpee();
   @override
   Future<Map<String, dynamic>> call({
     required String url,
