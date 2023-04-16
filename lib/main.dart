@@ -1,5 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:news_mobile/core/model/news.dart';
+import 'package:news_mobile/features/authentication/view/login_screen.dart';
+import 'package:news_mobile/features/home/view/dashboard.dart';
+import 'package:news_mobile/features/home/view/home.dart';
+import 'package:news_mobile/features/onboarding/onboarding.dart';
+import 'package:news_mobile/features/home/view/news_detail.dart';
+
+import 'features/authentication/view/signup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,43 +21,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    _cacheassetImage(context);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Home(),
     );
+  }
+
+  void _cacheassetImage(BuildContext context) {
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image1.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image2.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image3.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image4.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image5.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image6.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image7.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/onboarding_images/image8.jpg'), context);
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
