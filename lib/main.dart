@@ -6,12 +6,14 @@ import 'package:news_mobile/features/home/view/dashboard.dart';
 import 'package:news_mobile/features/home/view/home.dart';
 import 'package:news_mobile/features/onboarding/onboarding.dart';
 import 'package:news_mobile/features/home/view/news_detail.dart';
+import 'package:news_mobile/injection_container.dart';
 
 import 'features/authentication/view/signup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await setup();
   runApp(const MyApp());
 }
 

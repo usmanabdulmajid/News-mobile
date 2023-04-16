@@ -228,7 +228,7 @@ class NewsDetail extends StatelessWidget {
                           alignment: AlignmentDirectional.center,
                           padding: const EdgeInsetsDirectional.all(16),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF0084FE),
+                            color: AppColors.azureRadiance,
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: const Icon(

@@ -1,5 +1,5 @@
 class News {
-  final int? id;
+  final String? id;
   final String? sourceName;
   final String? author;
   final String? title;

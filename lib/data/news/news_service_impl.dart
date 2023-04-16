@@ -19,8 +19,8 @@ class NewsServiceImpl implements INewsService {
       if (x.isNotEmpty) {
         x = '&$x';
       }
-      final result =
-          await http(url: '$newsUrl$x$newsApiKey', method: RequestMethod.get);
+      final result = await http(
+          url: 'https://$newsUrl$x$newsApiKey', method: RequestMethod.get);
       final list = result['articles'] as List;
       news = list.map((e) => News.fromMap(e, category)).toList();
     } on AppException catch (e) {
