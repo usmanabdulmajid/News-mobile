@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_mobile/core/model/news.dart';
+import 'package:news_mobile/core/model/settings.dart';
 import 'package:news_mobile/features/authentication/view/login_screen.dart';
 import 'package:news_mobile/features/home/view/dashboard.dart';
 import 'package:news_mobile/features/home/view/home.dart';
-import 'package:news_mobile/features/onboarding/onboarding.dart';
+import 'package:news_mobile/features/onboarding/settings_notifier.dart';
+import 'package:news_mobile/features/onboarding/view/onboarding.dart';
 import 'package:news_mobile/features/home/view/news_detail.dart';
 import 'package:news_mobile/injection_container.dart';
 
@@ -14,8 +17,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await setup();
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(child: MyApp()),
+  );
 }
+
+final settingsProvider = StateNotifierProvider<SettingsNotifier, Settings>(
+  (ref) => SettingsNotifier(),
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -30,7 +39,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: Home(),
+      home: Consumer(
+        builder: (context, ref, child) {
+          final value = ref.read(settingsProvider.notifier);
+          return value.firstLaunch
+              ? const Onboarding()
+              : value.hasUserData
+                  ? const Home()
+                  : const LoginScreen();
+        },
+      ),
     );
   }
 
