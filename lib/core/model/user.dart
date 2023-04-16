@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+
 class User {
   String uid;
   String email;
@@ -57,4 +59,35 @@ class User {
 
   @override
   int get hashCode => uid.hashCode ^ email.hashCode ^ name.hashCode;
+}
+
+class UserAdapter extends TypeAdapter<User> {
+  @override
+  User read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+
+    return User(
+      uid: fields[0] as String,
+      email: fields[1] as String,
+      name: fields[2] as String,
+    );
+  }
+
+  @override
+  int get typeId => 2;
+
+  @override
+  void write(BinaryWriter writer, User obj) {
+    writer
+      ..writeByte(3)
+      ..writeByte(0)
+      ..write(obj.uid)
+      ..writeByte(1)
+      ..write(obj.email)
+      ..writeByte(2)
+      ..write(obj.name);
+  }
 }

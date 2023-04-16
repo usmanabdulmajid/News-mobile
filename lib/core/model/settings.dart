@@ -53,7 +53,7 @@ class SettingsAdapter extends TypeAdapter<Settings> {
   }
 
   @override
-  int get typeId => 0;
+  int get typeId => 1;
 
   @override
   void write(BinaryWriter writer, Settings obj) {
