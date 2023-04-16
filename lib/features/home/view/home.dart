@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile/core/theme/app_colors.dart';
 import 'package:news_mobile/features/home/view/dashboard.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
       icon: Icon(Icons.home_rounded),
       activeIcon: Icon(
         Icons.home_rounded,
-        color: Colors.blue,
+        color: AppColors.azureRadiance,
       ),
     ),
     const BottomNavigationBarItem(
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
       icon: Icon(Icons.bookmark_border),
       activeIcon: Icon(
         Icons.bookmark_border,
-        color: Colors.blue,
+        color: AppColors.azureRadiance,
       ),
     ),
     const BottomNavigationBarItem(
@@ -35,7 +36,7 @@ class _HomeState extends State<Home> {
       icon: Icon(Icons.notifications_outlined),
       activeIcon: Icon(
         Icons.notifications_outlined,
-        color: Colors.blue,
+        color: AppColors.azureRadiance,
       ),
     ),
     const BottomNavigationBarItem(
@@ -44,7 +45,7 @@ class _HomeState extends State<Home> {
       icon: Icon(Icons.person_2_outlined),
       activeIcon: Icon(
         Icons.person_2_outlined,
-        color: Colors.blue,
+        color: AppColors.azureRadiance,
       ),
     ),
   ];
