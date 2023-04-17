@@ -24,12 +24,7 @@ Future<void> setup() async {
   await CacheHelper.openAllBox();
 
   locator
-    ..registerLazySingleton<StateNotifierProvider<AuthNotifier, AuthState>>(
-      () =>
-          StateNotifierProvider<AuthNotifier, AuthState>((ref) => AuthNotifier(
-                locator(),
-              )),
-    )
+
     //domain -> repositories
     ..registerLazySingleton<IAuthRepository>(
       () => AuthRepositoryImpl(locator()),
