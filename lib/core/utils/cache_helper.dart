@@ -19,13 +19,16 @@ class CacheHelper {
       ..registerAdapter(SettingsAdapter())
       ..registerAdapter(UserAdapter());
     _settings = HiveStorage<Settings>(await Hive.openBox(kSettingsBox));
-    final key = Hive.generateSecureKey();
-    await _secureStorage.write(
-      key: kencryptionKey,
-      value: base64UrlEncode(key),
-    );
-    final storageKey = await _secureStorage.read(key: kencryptionKey);
-    final encryptionKey = base64Url.decode(storageKey!);
+    final encryprionKey = await _secureStorage.read(key: 'key');
+    if (encryprionKey == null) {
+      final key = Hive.generateSecureKey();
+      await _secureStorage.write(
+        key: 'key',
+        value: base64UrlEncode(key),
+      );
+    }
+    final key = await _secureStorage.read(key: 'key');
+    final encryptionKey = base64Url.decode(key!);
     _user = HiveStorage<User>(
       await Hive.openBox(
         kUserBox,

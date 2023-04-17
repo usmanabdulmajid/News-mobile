@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:news_mobile/core/service/http/http_service.dart';
 import 'package:news_mobile/core/service/http/httpee.dart';
@@ -11,6 +12,8 @@ import 'package:news_mobile/domain/auth/iauth_repository.dart';
 import 'package:news_mobile/domain/news/inews_repository.dart';
 import 'package:news_mobile/domain/news/news_repository_impl.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:news_mobile/features/authentication/viewmodel/auth_notifier.dart';
+import 'package:news_mobile/features/authentication/viewmodel/auth_state.dart';
 
 final locator = GetIt.I;
 
@@ -19,8 +22,15 @@ Future<void> setup() async {
   await Hive.initFlutter();
   //open all hive boxes and register all TypeAdapters
   await CacheHelper.openAllBox();
-  //domain -> repositories
+
   locator
+    ..registerLazySingleton<StateNotifierProvider<AuthNotifier, AuthState>>(
+      () =>
+          StateNotifierProvider<AuthNotifier, AuthState>((ref) => AuthNotifier(
+                locator(),
+              )),
+    )
+    //domain -> repositories
     ..registerLazySingleton<IAuthRepository>(
       () => AuthRepositoryImpl(locator()),
     )

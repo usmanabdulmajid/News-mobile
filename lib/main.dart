@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_mobile/core/model/news.dart';
 import 'package:news_mobile/core/model/settings.dart';
+import 'package:news_mobile/core/utils/logger.dart';
 import 'package:news_mobile/features/authentication/view/login_screen.dart';
 import 'package:news_mobile/features/home/view/dashboard.dart';
 import 'package:news_mobile/features/home/view/home.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Consumer(
         builder: (context, ref, child) {
-          final value = ref.read(settingsProvider.notifier);
+          final value = ref.read(settingsProvider);
           return value.firstLaunch
               ? const Onboarding()
               : value.hasUserData

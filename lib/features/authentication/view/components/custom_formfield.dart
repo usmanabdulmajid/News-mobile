@@ -9,6 +9,7 @@ class CustomFormField extends StatefulWidget {
   final String? hintText;
   final bool obscureText;
   final ValueChanged<String?>? onChanged;
+  final FormFieldValidator<String>? validator;
 
   const CustomFormField({
     required this.controller,
@@ -16,6 +17,7 @@ class CustomFormField extends StatefulWidget {
     this.title,
     this.hintText,
     this.onChanged,
+    this.validator,
     super.key,
   });
 
@@ -45,6 +47,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
         TextFormField(
           controller: widget.controller,
           cursorColor: AppColors.azureRadiance,
+          validator: widget.validator,
           style: const TextStyle(color: AppColors.scorpion),
           decoration: InputDecoration(
             suffixIconConstraints: const BoxConstraints(

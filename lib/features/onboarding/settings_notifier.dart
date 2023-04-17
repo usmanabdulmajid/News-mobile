@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_mobile/core/model/settings.dart';
 import 'package:news_mobile/core/utils/cache_helper.dart';
+import 'package:news_mobile/core/utils/logger.dart';
 
 class SettingsNotifier extends StateNotifier<Settings> {
   SettingsNotifier() : super(Settings()) {
@@ -12,6 +13,7 @@ class SettingsNotifier extends StateNotifier<Settings> {
       _settings = settings;
     }
     final user = CacheHelper.user;
+
     if (user == null) {
       final newSetting = CacheHelper.settings;
       _settings.hasUserData = false;

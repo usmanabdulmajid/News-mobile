@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:news_mobile/core/constants/firebase_instances.dart';
 import 'package:news_mobile/core/exception/firebase_exception_parser.dart';
 import 'package:news_mobile/core/model/user.dart';
+import 'package:news_mobile/core/utils/logger.dart';
 import 'package:news_mobile/data/auth/iauthentication.dart';
 
 class FirebaseAuthImpl implements IAuthentication {
@@ -84,7 +85,7 @@ class FirebaseAuthImpl implements IAuthentication {
       user = User(
         uid: userCred.user!.uid,
         email: userCred.user!.email!,
-        name: userCred.user!.displayName!,
+        name: name,
       );
     } on FirebaseAuthException catch (e) {
       parseFirebaseException(e.code);

@@ -4,6 +4,7 @@ import 'package:news_mobile/core/exception/auth_exception.dart';
 import 'package:news_mobile/core/model/base_error.dart';
 import 'package:news_mobile/core/model/base_response.dart';
 import 'package:news_mobile/core/model/user.dart';
+import 'package:news_mobile/core/utils/cache_helper.dart';
 import 'package:news_mobile/data/auth/iauthentication.dart';
 import 'package:news_mobile/domain/auth/iauth_repository.dart';
 
@@ -19,6 +20,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           await _authService.logInWithEmail(email: email, password: password);
       response.success = true;
       response.data = result;
+      CacheHelper.user = result;
     } on AppException catch (e) {
       response.success = false;
       response.error = BaseError(description: e.message);
@@ -79,6 +81,7 @@ class AuthRepositoryImpl implements IAuthRepository {
       );
       response.success = true;
       response.data = result;
+      CacheHelper.user = result;
     } on AppException catch (e) {
       response.success = false;
       response.error = BaseError(description: e.message);

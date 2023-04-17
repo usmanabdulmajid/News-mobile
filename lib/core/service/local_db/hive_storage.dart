@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:news_mobile/core/service/local_db/local_storage.dart';
+import 'package:news_mobile/core/utils/logger.dart';
 
 class HiveStorage<E> implements LocalStorage<E> {
   HiveStorage(this.box);
@@ -24,6 +25,7 @@ class HiveStorage<E> implements LocalStorage<E> {
   @override
   E? read(String key) {
     _guard();
+    logger.i('readingg ${box.get(key)}');
     return box.get(key);
   }
 
@@ -39,6 +41,7 @@ class HiveStorage<E> implements LocalStorage<E> {
     if (box.containsKey(key)) {
       box.delete(key);
     }
+    logger.i('savinggg $value');
     await box.put(key, value);
   }
 
