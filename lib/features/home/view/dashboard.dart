@@ -178,7 +178,7 @@ class _DashBoardState extends State<DashBoard> {
                                   padding:
                                       const EdgeInsets.only(left: 20, right: 5),
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: val.news.length ?? 0,
+                                  itemCount: val.news.length,
                                   itemBuilder: (context, index) {
                                     return NewsCompoundTile(news: News());
                                   }),
