@@ -3,13 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:news_mobile/core/model/news.dart';
 
 class NewsState {
-  bool loading;
-  String errorMessage;
-  List<News> news;
+  final bool loading;
+  final String errorMessage;
+  final List<News> news;
   NewsState({
-    this.loading = false,
-    this.errorMessage = '',
-    this.news = const [],
+    required this.loading,
+    required this.errorMessage,
+    required this.news,
   });
 
   factory NewsState.initial() =>

@@ -31,6 +31,14 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
+    final container = ProviderContainer();
+    logger.e('rebuildddd');
+    container.listen(newsProvider, (old, newstate) {
+      logger.e('old state');
+      logger.e(old);
+      logger.e('new state');
+      logger.e(newstate);
+    });
     return Scaffold(
       body: SafeArea(
         child: DecoratedBox(
@@ -202,11 +210,11 @@ class _DashBoardState extends State<DashBoard> {
                                     padding: EdgeInsets.zero,
                                     onPressed: () async {
                                       final container = ProviderContainer();
-                                      final re = await container
+                                      await container
                                           .read(newsProvider.notifier)
                                           .news();
-                                      logger.i('shoo');
-                                      logger.i(val.toString());
+                                      logger.e(val.loading);
+                                      logger.e(val.news);
                                     },
                                     child: const Text(
                                       'View All',
