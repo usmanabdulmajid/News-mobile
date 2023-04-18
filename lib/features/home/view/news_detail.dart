@@ -194,15 +194,14 @@ class NewsDetail extends StatelessWidget {
                   color: AppColors.white,
                 ),
                 child: Container(
-                  height: 50,
                   margin:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 5),
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  alignment: Alignment.center,
                   child: TextField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: AppColors.athensGrey,
+                      contentPadding: const EdgeInsets.all(10),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(16),
@@ -226,6 +225,7 @@ class NewsDetail extends StatelessWidget {
                           width: 50,
                           height: 50,
                           alignment: AlignmentDirectional.center,
+                          margin: const EdgeInsets.only(left: 10),
                           padding: const EdgeInsetsDirectional.all(16),
                           decoration: BoxDecoration(
                             color: AppColors.azureRadiance,

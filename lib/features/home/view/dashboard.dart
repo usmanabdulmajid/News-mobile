@@ -32,7 +32,6 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     final container = ProviderContainer();
-    logger.e('rebuildddd');
     container.listen(newsProvider, (old, newstate) {
       logger.e('old state');
       logger.e(old);
@@ -101,15 +100,14 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                   ),
                   const YMargin(16),
-                  Container(
-                    height: 50,
+                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    alignment: Alignment.center,
                     child: TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: AppColors.white,
-                        //helperText: 'Search for news...',
+                        hintText: 'Search for news...',
+                        contentPadding: const EdgeInsets.all(10),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(color: Colors.transparent),
@@ -137,6 +135,7 @@ class _DashBoardState extends State<DashBoard> {
                             height: 50,
                             alignment: AlignmentDirectional.center,
                             padding: const EdgeInsetsDirectional.all(16),
+                            margin: const EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: AppColors.azureRadiance,
                               borderRadius: BorderRadius.circular(16),
@@ -188,7 +187,9 @@ class _DashBoardState extends State<DashBoard> {
                                   scrollDirection: Axis.horizontal,
                                   itemCount: val.news.length,
                                   itemBuilder: (context, index) {
-                                    return NewsCompoundTile(news: News());
+                                    return NewsCompoundTile(
+                                      news: val.news[index],
+                                    );
                                   }),
                             ),
                             const YMargin(10),
@@ -213,8 +214,6 @@ class _DashBoardState extends State<DashBoard> {
                                       await container
                                           .read(newsProvider.notifier)
                                           .news();
-                                      logger.e(val.loading);
-                                      logger.e(val.news);
                                     },
                                     child: const Text(
                                       'View All',

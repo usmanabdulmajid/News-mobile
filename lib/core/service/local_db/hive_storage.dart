@@ -25,7 +25,6 @@ class HiveStorage<E> implements LocalStorage<E> {
   @override
   E? read(String key) {
     _guard();
-    logger.i('readingg ${box.get(key)}');
     return box.get(key);
   }
 
@@ -41,7 +40,6 @@ class HiveStorage<E> implements LocalStorage<E> {
     if (box.containsKey(key)) {
       box.delete(key);
     }
-    logger.i('savinggg $value');
     await box.put(key, value);
   }
 
