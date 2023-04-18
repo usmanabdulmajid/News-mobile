@@ -7,6 +7,7 @@ import 'package:news_mobile/core/theme/app_colors.dart';
 import 'package:news_mobile/core/utils/extensions.dart';
 import 'package:news_mobile/core/utils/logger.dart';
 import 'package:news_mobile/core/utils/sizing.dart';
+import 'package:news_mobile/features/home/view/components/custom_textfield.dart';
 import 'package:news_mobile/features/home/view/components/news_compound_tile.dart';
 import 'package:news_mobile/features/home/view/components/news_tile.dart';
 import 'package:news_mobile/features/home/view/news_detail.dart';
@@ -28,6 +29,17 @@ class _DashBoardState extends State<DashBoard> {
       container.read(newsProvider.notifier).news();
     });
   }
+
+  final listOfCategory = [
+    'General',
+    'Business',
+    'Entertainment',
+    'Health',
+    'Science',
+    'Sport',
+    'Technology',
+    'Headlines',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -102,76 +114,33 @@ class _DashBoardState extends State<DashBoard> {
                   const YMargin(16),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: AppColors.white,
-                        hintText: 'Search for news...',
-                        contentPadding: const EdgeInsets.all(10),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.redAccent),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        suffixIcon: CupertinoButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () {},
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            alignment: AlignmentDirectional.center,
-                            padding: const EdgeInsetsDirectional.all(16),
-                            margin: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                              color: AppColors.azureRadiance,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child:
-                                const Icon(Icons.search, color: Colors.white),
-                          ),
-                        ),
-                      ),
+                    child: CustomTextfield(
+                      suffix: const Icon(Icons.search, color: Colors.white),
+                      onChanged: (val) {},
+                      hintText: 'Search for news...',
                     ),
                   ),
                   const YMargin(16),
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 40),
-                    child: ListView(
+                    child: ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       scrollDirection: Axis.horizontal,
-                      children: <String>[
-                        'Politics',
-                        'Politics',
-                        'Politics',
-                        'Politics',
-                        'Politics',
-                        'Politics',
-                        'Politics',
-                      ].map((title) {
+                      itemCount: listOfCategory.length,
+                      itemBuilder: (context, index) {
                         return GestureDetector(
+                          onTap: () {
+                            logger.i(listOfCategory[index]);
+                          },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 18.0),
                             child: Text(
-                              '#$title',
+                              '#${listOfCategory[index]}',
                               style: const TextStyle(color: Colors.blueGrey),
                             ),
                           ),
                         );
-                      }).toList(),
+                      },
                     ),
                   ),
                   Expanded(

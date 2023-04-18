@@ -5,6 +5,7 @@ import 'package:news_mobile/core/model/news.dart';
 import 'package:news_mobile/core/theme/app_colors.dart';
 import 'package:news_mobile/core/utils/extensions.dart';
 import 'package:news_mobile/core/utils/sizing.dart';
+import 'package:news_mobile/features/home/view/components/custom_textfield.dart';
 
 class NewsDetail extends StatelessWidget {
   final News news;
@@ -197,47 +198,12 @@ class NewsDetail extends StatelessWidget {
                   margin:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 5),
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: AppColors.athensGrey,
-                      contentPadding: const EdgeInsets.all(10),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.redAccent),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      suffixIcon: CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          alignment: AlignmentDirectional.center,
-                          margin: const EdgeInsets.only(left: 10),
-                          padding: const EdgeInsetsDirectional.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.azureRadiance,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: const Icon(
-                            Icons.send_outlined,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                  child: const CustomTextfield(
+                    suffix: Icon(
+                      Icons.send_outlined,
+                      color: Colors.white,
                     ),
+                    filledColor: AppColors.athensGrey,
                   ),
                 ),
               ),
